@@ -31,5 +31,6 @@ jobs:
             cd ~/servidor_charles
             source venv/bin/activate
             pip install -r backend/requirements.txt
+            sudo rm -rf /var/www/html/*
             sudo cp -r ~/servidor_charles/frontend/* /var/www/html/
             sudo systemctl restart todoapp
