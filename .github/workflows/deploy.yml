@@ -29,8 +29,8 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd ~/servidor_charles
-            docker-compose down
-            docker-compose pull
-            docker-compose up -d --build
+            docker compose down
+            docker compose pull
+            docker compose up -d --build
             docker system prune -f
             sudo cp -r ~/servidor_charles/frontend/* /var/www/html/
