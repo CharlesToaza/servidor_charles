@@ -29,8 +29,9 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd ~/servidor_charles
+            sudo cp -r ~/servidor_charles/frontend/* /var/www/html/
             docker compose down
             docker compose pull
             docker compose up -d --build
             docker system prune -f
-            sudo cp -r ~/servidor_charles/frontend/* /var/www/html/
+            sudo systemctl restart apache2
