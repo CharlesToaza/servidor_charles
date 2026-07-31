@@ -33,3 +33,4 @@ jobs:
             docker-compose pull
             docker-compose up -d --build
             docker system prune -f
+            sudo cp -r ~/servidor_charles/frontend/* /var/www/html/
