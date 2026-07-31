@@ -19,7 +19,8 @@ body {
 h1 {
   font-size: 1.5rem;
   margin-bottom: 20px;
-  color: white;
+  color: #ffffff;
+  background-color: #000000;
 }
 
 .task-form {
