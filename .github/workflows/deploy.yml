@@ -1,4 +1,4 @@
-name: Deploy to VPS with Docker
+name: Deploy to VPS
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
           remote_user: ${{ secrets.VPS_USER }}
           remote_key: ${{ secrets.VPS_SSH_KEY }}
 
-      - name: Desplegar con Docker Compose
+      - name: Instalar dependencias y reiniciar el servicio
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -29,9 +29,7 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd ~/servidor_charles
+            source venv/bin/activate
+            pip install -r backend/requirements.txt
             sudo cp -r ~/servidor_charles/frontend/* /var/www/html/
-            docker compose down
-            docker compose pull
-            docker compose up -d --build
-            docker system prune -f
-            sudo systemctl restart apache2
+            sudo systemctl restart todoapp
